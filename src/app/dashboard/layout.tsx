@@ -27,7 +27,7 @@ export default function DashboardLayout({
   return (
     <div className=" relative flex h-[100vh]">
       <Sidebar />
-      <div className="flex flex-1 flex-col " >
+      <div className="flex flex-1 flex-col ">
         <Navbar />
         <main className="flex-1 overflow-y-auto bg-gray-50/40 p-6 dark:bg-gray-800/40">
           {children}

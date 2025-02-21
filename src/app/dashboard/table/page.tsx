@@ -92,59 +92,77 @@ export default function TableView() {
   };
 
   return (
-    <div className="container mx-auto space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Employees Table</h1>
-          <p className="text-sm text-gray-500">
-            View and manage employees in a table format
-          </p>
-        </div>
-        <div className="flex items-center gap-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-            <Input
-              placeholder="Search employees..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-64 pl-9"
-            />
+    <div className="flex h-full flex-col">
+      {/* Sticky Header Section */}
+      <div className="bg-white sticky top-0 z-10 border-b -mt-6 -mx-6 px-6 pt-0">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-4 gap-4">
+          <div>
+            <h1 className="text-xl md:text-2xl font-bold leading-tight">
+              Employees Table
+            </h1>
+            <p className="text-sm text-gray-500">
+              View and manage employees in a table format
+            </p>
           </div>
-          <select
-            onChange={(e) => setSelectedDepartment(e.target.value)}
-            className="border rounded px-3 py-2"
-          >
-            <option value="">All Departments</option>
-            {Array.from(new Set(employees.map((emp) => emp.department))).map(
-              (dept) => (
-                <option key={dept} value={dept}>
-                  {dept}
-                </option>
-              )
-            )}
-          </select>
-          <Button onClick={() => setIsFormOpen(true)}>Add Employee</Button>
+
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 w-full md:w-auto">
+            <div className="relative w-full sm:w-64">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+              <Input
+                placeholder="Search employees..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full sm:w-64 pl-9"
+              />
+            </div>
+
+            <select
+              onChange={(e) => setSelectedDepartment(e.target.value)}
+              className="border rounded px-3 py-2 w-full sm:w-auto"
+            >
+              <option value="">All Departments</option>
+              {Array.from(new Set(employees.map((emp) => emp.department))).map(
+                (dept) => (
+                  <option key={dept} value={dept}>
+                    {dept}
+                  </option>
+                )
+              )}
+            </select>
+
+            <Button
+              onClick={() => setIsFormOpen(true)}
+              className="w-full sm:w-auto"
+            >
+              Add Employee
+            </Button>
+          </div>
         </div>
       </div>
 
-      {filteredEmployees.length > 0 ? (
-        <EmployeeTable
-          employees={filteredEmployees}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-        />
-      ) : (
-        <div className="flex h-[200px] items-center justify-center rounded-lg border border-dashed">
-          <div className="text-center">
-            <p className="text-lg font-medium">No employees found</p>
-            <p className="text-sm text-gray-500">
-              {searchQuery
-                ? "Try adjusting your search query"
-                : "Add your first employee to get started"}
-            </p>
+      {/* Scrollable Content Section */}
+      <div className="flex-1 overflow-auto pt-10">
+        {filteredEmployees.length > 0 ? (
+          <div className="rounded-lg border bg-white">
+            <EmployeeTable
+              employees={filteredEmployees}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="flex h-[200px] items-center justify-center rounded-lg border border-dashed bg-white">
+            <div className="text-center">
+              <p className="text-lg font-medium">No employees found</p>
+              <p className="text-sm text-gray-500">
+                {searchQuery
+                  ? "Try adjusting your search query"
+                  : "Add your first employee to get started"}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
 
       <EmployeeForm
         open={isFormOpen}

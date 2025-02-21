@@ -97,64 +97,73 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="container mx-auto space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold">Employee Dashboard</h1>
-          <p className="text-sm text-gray-500">Manage your employees</p>
-        </div>
-        <div className="flex items-center gap-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-            <Input
-              placeholder="Search employees..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-64 pl-9"
-            />
+    <div className="flex h-full flex-col">
+      <div className="bg-background border-b -mt-6 -mx-6 px-4 sm:px-6">
+        <div className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Employee Dashboard</h1>
+            <p className="text-sm text-gray-500">Manage your employees</p>
           </div>
-
-          <select
-            onChange={(e) => setSelectedDepartment(e.target.value)}
-            className="border rounded px-3 py-2"
-          >
-            <option value="">All Departments</option>
-            {Array.from(new Set(employees.map((emp) => emp.department))).map(
-              (dept) => (
-                <option key={dept} value={dept}>
-                  {dept}
-                </option>
-              )
-            )}
-          </select>
-
-          <Button onClick={() => setIsFormOpen(true)}>Add Employee</Button>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="relative w-full sm:w-64">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+              <Input
+                placeholder="Search employees..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-9 sm:w-64"
+              />
+            </div>
+            <select
+              onChange={(e) => setSelectedDepartment(e.target.value)}
+              className="border rounded px-3 py-2 w-full sm:w-auto"
+            >
+              <option value="">All Departments</option>
+              {Array.from(new Set(employees.map((emp) => emp.department))).map(
+                (dept) => (
+                  <option key={dept} value={dept}>
+                    {dept}
+                  </option>
+                )
+              )}
+            </select>
+            <Button
+              onClick={() => setIsFormOpen(true)}
+              className="w-full sm:w-auto"
+            >
+              Add Employee
+            </Button>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredEmployees.map((employee) => (
-          <EmployeeCard
-            key={employee.id}
-            employee={employee}
-            onEdit={() => handleEdit(employee)}
-            onDelete={() => handleDelete(employee.id)}
-          />
-        ))}
-      </div>
-
-      {filteredEmployees.length === 0 && (
-        <div className="flex h-[200px] items-center justify-center rounded-lg border border-dashed">
-          <div className="text-center">
-            <p className="text-lg font-medium">No employees found</p>
-            <p className="text-sm text-gray-500">
-              {searchQuery
-                ? "Try adjusting your search query"
-                : "Add your first employee to get started"}
-            </p>
+      {/* Scrollable Content Section */}
+      <div className="flex-1 overflow-auto">
+        <div className="py-4 px-4 sm:py-6 sm:px-0">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {filteredEmployees.map((employee) => (
+              <EmployeeCard
+                key={employee.id}
+                employee={employee}
+                onEdit={() => handleEdit(employee)}
+                onDelete={() => handleDelete(employee.id)}
+              />
+            ))}
           </div>
+          {filteredEmployees.length === 0 && (
+            <div className="flex h-[200px] items-center justify-center rounded-lg border border-dashed">
+              <div className="text-center">
+                <p className="text-lg font-medium">No employees found</p>
+                <p className="text-sm text-gray-500">
+                  {searchQuery
+                    ? "Try adjusting your search query"
+                    : "Add your first employee to get started"}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       <EmployeeForm
         open={isFormOpen}
