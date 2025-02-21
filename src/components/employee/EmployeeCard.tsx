@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Employee } from "@/types";
 import Image from "next/image";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Building } from "lucide-react";
 
 interface EmployeeCardProps {
   employee: Employee;
@@ -40,9 +40,14 @@ const EmployeeCard = ({ employee}: EmployeeCardProps) => {
             {employee.phone || "No phone"}
           </div>
           <div className="flex items-center justify-center">
+            <Building className="mr-2 h-4 w-4" />
+            {employee.department || "No address"}
+          </div>
+          <div className="flex items-center justify-center">
             <MapPin className="mr-2 h-4 w-4" />
             {employee.address || "No address"}
           </div>
+          
         </div>
       </CardContent>
     </Card>

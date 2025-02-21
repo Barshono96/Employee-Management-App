@@ -3,10 +3,9 @@ export interface Employee {
   name: string;
   email: string;
   phone?: string;
-  // department?: string;
-  // position?: string;
   address?: string;
   profilePicture?: string;
+  department: string;
 }
 
 export interface EmployeeFormData {
@@ -15,6 +14,7 @@ export interface EmployeeFormData {
   phone?: string;
   address?: string;
   profilePicture?: string;
+  department: string;
 }
 
 export interface FormErrors {
@@ -22,6 +22,7 @@ export interface FormErrors {
   email?: string;
   phone?: string;
   address?: string;
+  department?: string;
 }
 
 export interface ThemeProviderProps {

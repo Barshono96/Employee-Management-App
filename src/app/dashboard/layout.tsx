@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/lib/hooks';
-import Navbar from '@/components/layout/Navbar';
-import Sidebar from '@/components/layout/Sidebar';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/lib/hooks";
+import Navbar from "@/components/layout/Navbar";
+import Sidebar from "@/components/layout/Sidebar";
 
 export default function DashboardLayout({
   children,
@@ -16,7 +16,7 @@ export default function DashboardLayout({
 
   useEffect(() => {
     if (!user) {
-      router.push('/login');
+      router.push("/login");
     }
   }, [user, router]);
 
@@ -25,10 +25,9 @@ export default function DashboardLayout({
   }
 
   return (
-  
-    <div className=" flex h-[100vh]">
+    <div className=" relative flex h-[100vh]">
       <Sidebar />
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col " >
         <Navbar />
         <main className="flex-1 overflow-y-auto bg-gray-50/40 p-6 dark:bg-gray-800/40">
           {children}

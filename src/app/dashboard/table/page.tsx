@@ -36,33 +36,16 @@ export default function TableView() {
   >();
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState<boolean>(false);
   const [employeeToDelete, setEmployeeToDelete] = useState<string | null>(null);
-  const [sortField, setSortField] = useState<keyof Employee>("name");
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+  const [selectedDepartment, setSelectedDepartment] = useState<string>("");
 
-  const filteredEmployees = employees
-    .filter(
-      (employee) =>
+  const filteredEmployees = employees.filter(
+    (employee) =>
+      (searchQuery === "" ||
         employee.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         employee.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        employee.address?.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    .sort((a, b) => {
-      const aValue =
-        sortField === "phone"
-          ? parseInt(a[sortField] || "0", 10)
-          : (a[sortField] || "").toString().toLowerCase();
-      const bValue =
-        sortField === "phone"
-          ? parseInt(b[sortField] || "0", 10)
-          : (b[sortField] || "").toString().toLowerCase();
-      return sortDirection === "asc"
-        ? aValue > bValue
-          ? 1
-          : -1
-        : aValue < bValue
-        ? 1
-        : -1;
-    });
+        employee.address?.toLowerCase().includes(searchQuery.toLowerCase())) &&
+      (selectedDepartment === "" || employee.department === selectedDepartment)
+  );
 
   const handleAddEmployee = (employeeData: EmployeeFormData) => {
     dispatch(
@@ -108,22 +91,6 @@ export default function TableView() {
     }
   };
 
-  const handleSortChange = (value: string) => {
-    if (value === "name-asc") {
-      setSortField("name");
-      setSortDirection("asc");
-    } else if (value === "name-desc") {
-      setSortField("name");
-      setSortDirection("desc");
-    } else if (value === "phone-asc") {
-      setSortField("phone");
-      setSortDirection("asc");
-    } else if (value === "phone-desc") {
-      setSortField("phone");
-      setSortDirection("desc");
-    }
-  };
-
   return (
     <div className="container mx-auto space-y-6">
       <div className="flex items-center justify-between">
@@ -144,13 +111,17 @@ export default function TableView() {
             />
           </div>
           <select
-            onChange={(e) => handleSortChange(e.target.value)}
+            onChange={(e) => setSelectedDepartment(e.target.value)}
             className="border rounded px-3 py-2"
           >
-            <option value="name-asc">Name (A-Z)</option>
-            <option value="name-desc">Name (Z-A)</option>
-            <option value="phone-asc">Phone (Low-High)</option>
-            <option value="phone-desc">Phone (High-Low)</option>
+            <option value="">All Departments</option>
+            {Array.from(new Set(employees.map((emp) => emp.department))).map(
+              (dept) => (
+                <option key={dept} value={dept}>
+                  {dept}
+                </option>
+              )
+            )}
           </select>
           <Button onClick={() => setIsFormOpen(true)}>Add Employee</Button>
         </div>
@@ -161,8 +132,6 @@ export default function TableView() {
           employees={filteredEmployees}
           onEdit={handleEdit}
           onDelete={handleDelete}
-          sortField={sortField}
-          sortDirection={sortDirection}
         />
       ) : (
         <div className="flex h-[200px] items-center justify-center rounded-lg border border-dashed">

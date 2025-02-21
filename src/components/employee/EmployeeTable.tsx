@@ -38,40 +38,41 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({
     children: React.ReactNode;
   }) => (
     <TableHead
-      className="group cursor-pointer hover:bg-gray-50"
+      className="group cursor-pointer hover:bg-gray-50 px-4 py-2"
       onClick={() => onSort?.(field)}
     >
       <div className="flex items-center">
         {children}
         <ArrowUpDown
-          className={`ml-1 h-4 w-4 ${
+          className={`ml-1 h-4 w-4 transition-all ${
             sortField === field
-              ? "opacity-100" + (sortDirection === "desc" ? " rotate-180" : "")
+              ? "opacity-100 " + (sortDirection === "desc" ? "rotate-180" : "")
               : "opacity-0 group-hover:opacity-100"
-          } transition-all`}
+          }`}
         />
       </div>
     </TableHead>
   );
 
   return (
-    <div className="rounded-md border">
+    <div className="rounded-md border overflow-hidden">
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead>Profile</TableHead>
+          <TableRow className="bg-gray-100">
+            <TableHead className="px-4 py-2">Profile</TableHead>
             <SortableHeader field="name">Name</SortableHeader>
             <SortableHeader field="email">Email</SortableHeader>
             <SortableHeader field="phone">Phone</SortableHeader>
             <SortableHeader field="address">Address</SortableHeader>
-            <TableHead className="text-center">Actions</TableHead>{" "}
-            {/* Adjusted alignment */}
+            <SortableHeader field="department">Department</SortableHeader>{" "}
+            {/* ✅ Added Department */}
+            <TableHead className="text-center px-4 py-2">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {employees.map((employee) => (
-            <TableRow key={employee.id}>
-              <TableCell>
+            <TableRow key={employee.id} className="hover:bg-gray-50">
+              <TableCell className="px-4 py-2">
                 <div className="relative h-10 w-10 overflow-hidden rounded-full bg-gray-100">
                   <Image
                     src={employee.profilePicture || "/placeholder-avatar.png"}
@@ -83,13 +84,21 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({
                   />
                 </div>
               </TableCell>
-              <TableCell className="font-medium">{employee.name}</TableCell>
-              <TableCell>{employee.email}</TableCell>
-              <TableCell>{employee.phone || "-"}</TableCell>
-              <TableCell>{employee.address || "-"}</TableCell>
-              <TableCell className="text-center">
-                {" "}
-                {/* Adjusted alignment */}
+              <TableCell className="px-4 py-2 font-medium">
+                {employee.name}
+              </TableCell>
+              <TableCell className="px-4 py-2">{employee.email}</TableCell>
+              <TableCell className="px-4 py-2">
+                {employee.phone || "-"}
+              </TableCell>
+              <TableCell className="px-4 py-2">
+                {employee.address || "-"}
+              </TableCell>
+              <TableCell className="px-4 py-2">
+                {employee.department || "-"}
+              </TableCell>{" "}
+              {/* ✅ Added Department */}
+              <TableCell className="px-4 py-2 text-center">
                 <div className="flex justify-center space-x-2">
                   <Button
                     variant="ghost"
