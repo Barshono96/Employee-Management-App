@@ -137,7 +137,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Scrollable Content Section */}
+      
       <div className="flex-1 overflow-auto">
         <div className="py-4 px-4 sm:py-6 sm:px-0">
           <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">

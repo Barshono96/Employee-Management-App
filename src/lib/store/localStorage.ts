@@ -17,6 +17,5 @@ export const saveState = (state: Partial<RootState>) => {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('employeeState', serializedState);
   } catch {
-    // Ignore write errors
   }
 };

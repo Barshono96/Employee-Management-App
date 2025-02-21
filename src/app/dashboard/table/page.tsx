@@ -93,7 +93,7 @@ export default function TableView() {
 
   return (
     <div className="flex h-full flex-col">
-      {/* Sticky Header Section */}
+    
       <div className="bg-white sticky top-0 z-10 border-b -mt-6 -mx-6 px-6 pt-0">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between pb-4 gap-4">
           <div>
@@ -140,7 +140,6 @@ export default function TableView() {
         </div>
       </div>
 
-      {/* Scrollable Content Section */}
       <div className="flex-1 overflow-auto pt-10">
         {filteredEmployees.length > 0 ? (
           <div className="rounded-lg border bg-white">

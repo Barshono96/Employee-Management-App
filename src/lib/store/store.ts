@@ -4,8 +4,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import employeeReducer from './employeeSlice';
 import authReducer from './authSlice';
 import { loadState, saveState } from './localStorage';
-
-// Define the RootState type
 export interface RootState {
   employee: ReturnType<typeof employeeReducer>;
   auth: ReturnType<typeof authReducer>;

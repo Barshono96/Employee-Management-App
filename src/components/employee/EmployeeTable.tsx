@@ -65,7 +65,6 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({
             <SortableHeader field="phone">Phone</SortableHeader>
             <SortableHeader field="address">Address</SortableHeader>
             <SortableHeader field="department">Department</SortableHeader>{" "}
-            {/* ✅ Added Department */}
             <TableHead className="text-center px-4 py-2">Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -97,7 +96,6 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({
               <TableCell className="px-4 py-2">
                 {employee.department || "-"}
               </TableCell>{" "}
-              {/* ✅ Added Department */}
               <TableCell className="px-4 py-2 text-center">
                 <div className="flex justify-center space-x-2">
                   <Button

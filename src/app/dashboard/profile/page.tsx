@@ -42,7 +42,7 @@ export default function ProfilePage() {
     dispatch(updateProfile(formData));
     toast.success("Profile updated successfully");
 
-    // Clear the form fields after submission
+    
     setFormData({
       phone: "",
       location: "",
@@ -54,7 +54,7 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
-        {/* Header Section */}
+       
         <div className="mb-12">
           <h1 className="text-4xl font-bold tracking-tight">
             Profile Settings
@@ -65,7 +65,7 @@ export default function ProfilePage() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-2">
-          {/* Personal Information Card */}
+          
           <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-200">
             <CardHeader className="bg-gray-50 dark:bg-gray-800">
               <CardTitle className="flex items-center gap-2 text-xl">
@@ -145,7 +145,7 @@ export default function ProfilePage() {
             </CardContent>
           </Card>
 
-          {/* Update Profile Card */}
+          
           <Card className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-200">
             <CardHeader className="bg-gray-50 dark:bg-gray-800">
               <CardTitle className="flex items-center gap-2 text-xl">

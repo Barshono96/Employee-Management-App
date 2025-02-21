@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/lib/hooks';
 import SignupForm from '@/components/auth/SignupForm';
-// import Logo from '@/components/ui/logo';
 import Image from "next/image";
 
 
@@ -21,11 +20,7 @@ export default function SignupPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50">
       <div className="mb-8 text-center">
-        {/* <div className="mb-4">
-          <Logo />
-        </div> */}
         <div className="mb-4 mr-4 flex items-center justify-center">
-                  {/* <Logo /> */}
                   <Image
                     src="/employee_8934611.png"
                     alt="Logo"

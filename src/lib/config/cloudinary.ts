@@ -1,5 +1,4 @@
-// Get these values from your Cloudinary dashboard
-import { env } from './env';
+import { env } from "./env";
 
 export const cloudinaryConfig = {
   cloudName: env.CLOUDINARY_CLOUD_NAME,
