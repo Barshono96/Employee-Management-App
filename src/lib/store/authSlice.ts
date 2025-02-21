@@ -57,11 +57,23 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
       }
     },
+
     updateProfile: (state, action: PayloadAction<Partial<User>>) => {
       if (state.user) {
         state.user = { ...state.user, ...action.payload };
+    
+        
+        localStorage.setItem('currentUser', JSON.stringify(state.user));
+    
+        
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const updatedUsers = users.map((u: User) =>
+          u.id === state.user?.id ? { ...u, ...action.payload } : u
+        );
+        localStorage.setItem('users', JSON.stringify(updatedUsers));
       }
     },
+    
   },
 });
 
