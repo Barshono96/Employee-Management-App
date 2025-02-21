@@ -52,7 +52,7 @@ export default function Sidebar() {
               <span
                 className={cn(
                   'group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground',
-                  pathname === item.href ? 'bg-accent' : 'transparent',
+                  pathname === item.href ? 'bg-gray-300' : 'transparent',
                   isCollapsed ? 'justify-center' : 'justify-start'
                 )}
               >

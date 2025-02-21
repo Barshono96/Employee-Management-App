@@ -48,11 +48,12 @@ export default function Navbar() {
           </div>
 
           {/* User Dropdown */}
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="relative h-10 w-10 rounded-full p-0"
+                className="relative h-10 w-10 rounded-full p-0 hover:bg-black"
               >
                 <Avatar className="h-10 w-10">
                   <AvatarImage
