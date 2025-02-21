@@ -114,12 +114,7 @@ const EmployeeForm = ({
     return Object.keys(newErrors).length === 0;
   };
 
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   if (validateForm()) {
-  //     onSubmit(formData);
-  //   }
-  // };
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
