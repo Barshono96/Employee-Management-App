@@ -1,51 +1,21 @@
-// import type { Metadata } from 'next'
-// import { Inter } from 'next/font/google'
-// import './globals.css'
-// import { ReduxProvider } from "@/components/providers/ReduxProvider"
-// import { Toaster } from 'sonner'
-
-// const inter = Inter({ subsets: ['latin'] })
-
-// export const metadata: Metadata = {
-//   title: 'Employee Management',
-//   description: 'Manage your employees efficiently',
-// }
-
-// export default function RootLayout({
-//   children,
-// }: {
-//   children: React.ReactNode
-// }) {
-//   return (
-//     <html lang="en">
-//       <body className={inter.className}>
-//         <ReduxProvider>
-//           {children}
-//           <Toaster />
-//         </ReduxProvider>
-//       </body>
-//     </html>
-//   )
-// }
-
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { ReduxProvider } from "@/components/providers/ReduxProvider"
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { ReduxProvider } from "@/components/providers/ReduxProvider";
 import { ThemeProvider } from "next-themes";
-import { Toaster } from 'sonner'
+import { Toaster } from "sonner";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Employee Management',
-  description: 'Manage your employees efficiently',
-}
+  title: "Employee Management",
+  description: "Manage your employees efficiently",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -58,5 +28,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
