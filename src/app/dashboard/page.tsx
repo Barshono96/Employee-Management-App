@@ -129,7 +129,9 @@ export default function Dashboard() {
             </select>
             <Button
               onClick={() => setIsFormOpen(true)}
-              className="w-full sm:w-auto"
+              // className="w-full sm:w-auto"
+              className="w-full sm:w-auto bg-black dark:bg-blue-500 hover:bg-teal-950 dark:hover:bg-blue-600"
+
             >
               Add Employee
             </Button>

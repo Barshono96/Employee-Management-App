@@ -124,7 +124,8 @@ export default function TableView() {
             </select>
             <Button
               onClick={() => setIsFormOpen(true)}
-              className="w-full sm:w-auto"
+              // className="w-full sm:w-auto"
+              className="w-full sm:w-auto bg-black dark:bg-blue-500 hover:bg-teal-950 dark:hover:bg-blue-600"
             >
               Add Employee
             </Button>
@@ -164,6 +165,27 @@ export default function TableView() {
         onSubmit={selectedEmployee ? handleEditEmployee : handleAddEmployee}
         employee={selectedEmployee}
       />
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={deleteConfirmOpen} onOpenChange={setDeleteConfirmOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirm Deletion</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete this employee? This action cannot
+              be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setDeleteConfirmOpen(false)}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={confirmDelete}>
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
