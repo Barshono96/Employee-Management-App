@@ -1,5 +1,4 @@
 # Employee-Management-App
-# Employee Management System
 
 ## Overview
 
