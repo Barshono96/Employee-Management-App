@@ -39,6 +39,12 @@ export default function ProfilePage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.phone || !formData.location || !formData.department || !formData.position) {
+      toast.error("All fields are required");
+      return;
+    }
+
     dispatch(updateProfile(formData));
     toast.success("Profile updated successfully");
 
